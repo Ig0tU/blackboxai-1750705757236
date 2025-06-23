@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="4.0" method="upgrade">
+    <name>COM_POWERHOUSECMS</name>
+    <creationDate>January 2024</creationDate>
+    <author>PowerhouseCMS Team</author>
+    <authorEmail>admin@powerhousecms.com</authorEmail>
+    <authorUrl>https://powerhousecms.com</authorUrl>
+    <copyright>Copyright (C) 2024 PowerhouseCMS. All rights reserved.</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <version>1.0.0</version>
+    <description>COM_POWERHOUSECMS_XML_DESCRIPTION</description>
+    
+    <namespace path="src">Joomla\Component\PowerhouseCMS</namespace>
+    
+    <scriptfile>script.php</scriptfile>
+    
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">admin/sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">admin/sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+    
+    <update>
+        <schemas>
+            <schemapath type="mysql">admin/sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+    
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>powerhousecms.php</filename>
+        <folder>src</folder>
+        <folder>tmpl</folder>
+        <folder>language</folder>
+    </files>
+    
+    <administration>
+        <menu img="class:component">COM_POWERHOUSECMS</menu>
+        <files folder="admin">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>index.html</filename>
+            <filename>powerhousecms.php</filename>
+            <folder>forms</folder>
+            <folder>helpers</folder>
+            <folder>language</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+        </files>
+    </administration>
+    
+    <languages folder="admin/language">
+        <language tag="en-GB">en-GB/com_powerhousecms.ini</language>
+        <language tag="en-GB">en-GB/com_powerhousecms.sys.ini</language>
+    </languages>
+    
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                    name="api_endpoint"
+                    type="url"
+                    label="COM_POWERHOUSECMS_CONFIG_API_ENDPOINT_LABEL"
+                    description="COM_POWERHOUSECMS_CONFIG_API_ENDPOINT_DESC"
+                    default="http://localhost:8000/api"
+                />
+                <field
+                    name="enable_cache"
+                    type="radio"
+                    label="COM_POWERHOUSECMS_CONFIG_ENABLE_CACHE_LABEL"
+                    description="COM_POWERHOUSECMS_CONFIG_ENABLE_CACHE_DESC"
+                    default="1"
+                    class="btn-group btn-group-yesno"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+                <field
+                    name="cache_time"
+                    type="integer"
+                    label="COM_POWERHOUSECMS_CONFIG_CACHE_TIME_LABEL"
+                    description="COM_POWERHOUSECMS_CONFIG_CACHE_TIME_DESC"
+                    default="3600"
+                    min="60"
+                    max="86400"
+                />
+            </fieldset>
+        </fields>
+    </config>
+</extension>
