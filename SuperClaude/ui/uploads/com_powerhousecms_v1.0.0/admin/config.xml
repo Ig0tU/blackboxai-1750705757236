@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset
+        name="component"
+        label="COM_POWERHOUSECMS_CONFIG_COMPONENT_SETTINGS_LABEL"
+        description="COM_POWERHOUSECMS_CONFIG_COMPONENT_SETTINGS_DESC"
+    >
+        <field
+            name="api_endpoint"
+            type="url"
+            label="COM_POWERHOUSECMS_CONFIG_API_ENDPOINT_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_API_ENDPOINT_DESC"
+            size="50"
+            default="http://localhost:8000/api"
+            required="true"
+        />
+
+        <field
+            name="enable_cache"
+            type="radio"
+            label="COM_POWERHOUSECMS_CONFIG_ENABLE_CACHE_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_ENABLE_CACHE_DESC"
+            default="1"
+            class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="cache_time"
+            type="number"
+            label="COM_POWERHOUSECMS_CONFIG_CACHE_TIME_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_CACHE_TIME_DESC"
+            default="3600"
+            min="60"
+            max="86400"
+            step="60"
+            showon="enable_cache:1"
+        />
+
+        <field
+            name="sync_interval"
+            type="number"
+            label="COM_POWERHOUSECMS_CONFIG_SYNC_INTERVAL_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_SYNC_INTERVAL_DESC"
+            default="300"
+            min="60"
+            max="3600"
+            step="60"
+        />
+
+        <field
+            name="enable_logging"
+            type="radio"
+            label="COM_POWERHOUSECMS_CONFIG_ENABLE_LOGGING_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_ENABLE_LOGGING_DESC"
+            default="1"
+            class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="debug_mode"
+            type="radio"
+            label="COM_POWERHOUSECMS_CONFIG_DEBUG_MODE_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_DEBUG_MODE_DESC"
+            default="0"
+            class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+    </fieldset>
+
+    <fieldset
+        name="content"
+        label="COM_POWERHOUSECMS_CONFIG_CONTENT_SETTINGS_LABEL"
+        description="COM_POWERHOUSECMS_CONFIG_CONTENT_SETTINGS_DESC"
+    >
+        <field
+            name="enable_versioning"
+            type="radio"
+            label="COM_POWERHOUSECMS_CONFIG_ENABLE_VERSIONING_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_ENABLE_VERSIONING_DESC"
+            default="1"
+            class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="max_versions"
+            type="number"
+            label="COM_POWERHOUSECMS_CONFIG_MAX_VERSIONS_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_MAX_VERSIONS_DESC"
+            default="10"
+            min="1"
+            max="50"
+            showon="enable_versioning:1"
+        />
+
+        <field
+            name="enable_workflow"
+            type="radio"
+            label="COM_POWERHOUSECMS_CONFIG_ENABLE_WORKFLOW_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_ENABLE_WORKFLOW_DESC"
+            default="1"
+            class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="default_workflow_id"
+            type="sql"
+            label="COM_POWERHOUSECMS_CONFIG_DEFAULT_WORKFLOW_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_DEFAULT_WORKFLOW_DESC"
+            query="SELECT id AS value, title AS text FROM #__workflows WHERE published = 1 AND extension = 'com_powerhousecms'"
+            key_field="value"
+            value_field="text"
+            showon="enable_workflow:1"
+        />
+    </fieldset>
+
+    <fieldset
+        name="media"
+        label="COM_POWERHOUSECMS_CONFIG_MEDIA_SETTINGS_LABEL"
+        description="COM_POWERHOUSECMS_CONFIG_MEDIA_SETTINGS_DESC"
+    >
+        <field
+            name="allowed_file_types"
+            type="textarea"
+            label="COM_POWERHOUSECMS_CONFIG_ALLOWED_FILE_TYPES_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_ALLOWED_FILE_TYPES_DESC"
+            default="jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx,zip"
+            rows="3"
+            cols="30"
+        />
+
+        <field
+            name="max_upload_size"
+            type="number"
+            label="COM_POWERHOUSECMS_CONFIG_MAX_UPLOAD_SIZE_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_MAX_UPLOAD_SIZE_DESC"
+            default="10"
+            min="1"
+            max="100"
+            step="1"
+        />
+
+        <field
+            name="enable_image_processing"
+            type="radio"
+            label="COM_POWERHOUSECMS_CONFIG_ENABLE_IMAGE_PROCESSING_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_ENABLE_IMAGE_PROCESSING_DESC"
+            default="1"
+            class="btn-group btn-group-yesno"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+
+        <field
+            name="image_quality"
+            type="number"
+            label="COM_POWERHOUSECMS_CONFIG_IMAGE_QUALITY_LABEL"
+            description="COM_POWERHOUSECMS_CONFIG_IMAGE_QUALITY_DESC"
+            default="85"
+            min="1"
+            max="100"
+            showon="enable_image_processing:1"
+        />
+    </fieldset>
+
+    <fieldset
+        name="permissions"
+        label="JCONFIG_PERMISSIONS_LABEL"
+        description="JCONFIG_PERMISSIONS_DESC"
+    >
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            class="inputbox"
+            validate="rules"
+            filter="rules"
+            component="com_powerhousecms"
+            section="component"
+        />
+    </fieldset>
+</config>
